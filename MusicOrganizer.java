@@ -12,7 +12,7 @@ public class MusicOrganizer
     private ArrayList<String> files;
     // A player for the music files.
     private MusicPlayer player;
-        
+
     /**
      * Create a MusicOrganizer
      */
@@ -21,7 +21,7 @@ public class MusicOrganizer
         files = new ArrayList<String>();
         player = new MusicPlayer();
     }
-    
+
     /**
      * Add a file to the collection.
      * @param filename The file to be added.
@@ -30,7 +30,7 @@ public class MusicOrganizer
     {
         files.add(filename);
     }
-    
+
     /**
      * Return the number of files in the collection.
      * @return The number of files in the collection.
@@ -39,7 +39,7 @@ public class MusicOrganizer
     {
         return files.size();
     }
-    
+
     /**
      * List a file from the collection.
      * @param index The index of the file to be listed.
@@ -51,7 +51,7 @@ public class MusicOrganizer
             System.out.println(filename);
         }
     }
-    
+
     /**
      * Show a list of all the files in the collection.
      */
@@ -61,7 +61,7 @@ public class MusicOrganizer
             System.out.println(filename);
         }
     }
-    
+
     /**
      * List the names of files matching the given search string.
      * @param searchString The string to match.
@@ -88,8 +88,8 @@ public class MusicOrganizer
         int index = 0;
         // Record that we will be searching until a match is found.
         boolean searching = true;
-    
-        while(searching && index < files.size()) {
+        do
+        {
             String filename = files.get(index);
             if(filename.contains(searchString)) {
                 // A match. We can stop searching.
@@ -98,16 +98,13 @@ public class MusicOrganizer
             else {
                 // Move on.
                 index++;
-            }
+            }     
+        }while(searching && index <= files.size());
+        if (searching)
+        {
+            index = -2;
         }
-        if(searching) {
-            // We didn't find it.
-            return -1;
-        }
-        else {
-            // Return where it was found.
-            return index;
-        }
+        return (index + 1);
     }
 
     /**
